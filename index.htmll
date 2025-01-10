@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me perdonas?</title>
+
+    <style>
+        /* Fondo animado de colores */
+        body {
+            background: linear-gradient(135deg, #ff99cc, #ff66cc, #cc99ff, #66ccff);
+            background-size: 400% 400%;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            animation: gradientMove 10s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 350px;
+        }
+
+        button {
+            background-color: #ffffff;
+            border: none;
+            color: #ff3399;
+            font-size: 1.2em;
+            padding: 12px 30px;
+            margin: 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff66cc;
+            transform: scale(1.1);
+            color: #fff;
+        }
+
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+            animation: floatEmoji 6s linear forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatEmoji {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-600px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>¿Me perdonas?</h1>
+        <button id="yesButton">Sí</button>
+        <button id="noButton">No</button>
+        <p id="responseMessage"></p>
+    </div>
+
+    <script>
+        function showEmojis(emoji) {
+            for (let i = 0; i < 60; i++) {
+                let emojiElement = document.createElement('div');
+                emojiElement.classList.add('emoji');
+                emojiElement.innerText = emoji;
+                document.body.appendChild(emojiElement);
+
+                emojiElement.style.left = Math.random() * window.innerWidth + 'px';
+                emojiElement.style.top = Math.random() * window.innerHeight + 'px';
+                emojiElement.style.fontSize = Math.random() * 20 + 20 + 'px';
+
+                setTimeout(() => {
+                    emojiElement.remove();
+                }, 6000);
+            }
+        }
+
+        document.getElementById('yesButton').addEventListener('click', () => {
+            showEmojis("🥰🐣😭");
+            document.getElementById('responseMessage').innerText = "";
+
+            setTimeout(() => {
+                document.getElementById('responseMessage').innerText = "¡Gracias tembo, ya no va a volver a pasar!";
+            }, 1000);
+        });
+
+        document.getElementById('noButton').addEventListener('click', () => {
+            showEmojis("🙄👍🏿");
+            document.getElementById('responseMessage').innerText = "";
+
+            setTimeout(() => {
+                document.getElementById('responseMessage').innerText = "Mba'epiko que pio voy a hacer";
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
